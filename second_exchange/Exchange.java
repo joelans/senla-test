@@ -10,6 +10,7 @@ public class Exchange {
       {0.010318, 0.140544, 1.0, 1.086995, 1.298487},
       {0.009492, 0.129298, 0.919981, 1.0, 1.194589},
       {0.007947, 0.108246, 0.770197, 0.837121, 1.0}};
+  public static String[] currencyCode = {"RUB", "CNY", "USD", "EUR", "GBP"};
   public static HashMap<String, Integer> hm;
   public static void main(String[] args) throws IOException {
     hm = new HashMap<>();
@@ -24,19 +25,19 @@ public class Exchange {
       System.out.println("What currency do you want to convert? \nAvailable currency:");
       System.out.println("RUB - Russian Ruble\nCNY - Chinese Yuan Renminbi\nUSD - US Dollar\nEUR - Euro\nGBP - British Pound");
       System.out.println("Enter currency code");
-      answer = br.readLine();
+      answer = br.readLine().toUpperCase();
       while(answer.length() != 3 || !hm.containsKey(answer)) {
         System.out.println("Enter correct currency code");
-        answer = br.readLine();
+        answer = br.readLine().toUpperCase();
       }
       String currencyCodeFrom = answer;
       int indexFrom = hm.get(answer);
       System.out.println("What currency would you like to convert your amount to?");
       System.out.println("Enter currency code");
-      answer = br.readLine();
+      answer = br.readLine().toUpperCase();
       while(answer.length() != 3 || !hm.containsKey(answer)) {
         System.out.println("Enter correct currency code");
-        answer = br.readLine();
+        answer = br.readLine().toUpperCase();
       }
       String currencyCodeTo = answer;
       int indexTo = hm.get(answer);
@@ -67,6 +68,12 @@ public class Exchange {
       amount = Double.parseDouble(answer);
       double result = amount * exchangeRate[indexTo][indexFrom];
       System.out.println(amount + " " + currencyCodeFrom + " equals " + new DecimalFormat("#0.000000").format(result) + " " + currencyCodeTo);
+      System.out.println("Same amount in other currencies:");
+      for(int i = 0; i < exchangeRate.length; i++) {
+        if(i != indexTo && i != indexFrom) {
+          System.out.println(new DecimalFormat("#0.000000").format(amount * exchangeRate[i][indexFrom]) + " " + currencyCode[i]);
+        }
+      }
       System.out.println("Press the Y key to continue converting currency or any other key on the keyboard to finish the program execution");
       answer = br.readLine().toUpperCase();
     }
