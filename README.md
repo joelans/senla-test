@@ -1,1 +1,2 @@
 # senla-test
+Konstantin Kuramshin
