@@ -66,6 +66,7 @@ public class Hangman {
             }
             guessedLettersSet.add(answer.charAt(0));
             System.out.println("The entered letter is in the word\n" + String.join("", outputWord));
+            System.out.println("Unsuccessful attempts left: " + (6 - unsuccessfulAttempts));
             if(guessedLetters < wordToGuess[0].length()) {
               answer = br.readLine().toUpperCase();
             }
@@ -73,6 +74,7 @@ public class Hangman {
         } else {
           unsuccessfulAttempts++;
           System.out.println("There is no such letter in the word\n" + String.join("", outputWord));
+          System.out.println("Unsuccessful attempts left: " + (6 - unsuccessfulAttempts));
           if(unsuccessfulAttempts < 6) {
             answer = br.readLine().toUpperCase();
           }
